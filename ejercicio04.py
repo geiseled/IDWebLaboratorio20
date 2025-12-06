@@ -14,7 +14,7 @@ restante = ingreso_anual
 # tramo 1 -> [0 - 20000] con tasa 0%
 limite1 = 20000
 if restante > 0:
-    tramo1 = min(restante, limite1) # retorna el menor valor
+    tramo1 = min(restante, limite1) # retorna el minimo valor
     impuesto1 = tramo1 * 0
     impuesto_total += impuesto1
     restante -= tramo1
@@ -57,23 +57,15 @@ else:
 # tasa efectiva real
 tasa_efectiva = (impuesto_total / ingreso_anual) * 100
 
-# redondeo
-impuesto_total = round(impuesto_total, 2)
-tasa_efectiva = round(tasa_efectiva, 2)
-impuesto1 = round(impuesto1, 2)
-impuesto2 = round(impuesto2, 2)
-impuesto3 = round(impuesto3, 2)
-impuesto4 = round(impuesto4, 2)
-
-# salida en consola
-print("\n=== Calculo del impuesto anual ===")
-print("Ingreso anual:", ingreso_anual, "/S")
-
+# salida en consola (con formato de 2 decimales)
+print("\nCalculo del impuesto anual")
+print(f"Ingreso anual: {ingreso_anual:.2f} /S") # utilizamos f-string para ingresar de forma directa variables entre llaves {}
+                                                # utilizamos format:.2f para salida en formato con dos decimales
 print("\nImpuesto por tramos:")
-print(f"Tramo 1 [0 - 20000] -> {impuesto1} /S")
-print(f"Tramo 2 (20000 - 50000] -> {impuesto2} /S")
-print(f"Tramo 3 (50000 - 100000] -> {impuesto3} /S")
-print(f"Tramo 4 > 100000 -> {impuesto4} /S")
+print(f"Tramo 1 [0 - 20000] -> (0%) -> {impuesto1:.2f} /S")
+print(f"Tramo 2 (20000 - 50000] -> (10%) -> {impuesto2:.2f} /S")
+print(f"Tramo 3 (50000 - 100000] -> (20%) -> {impuesto3:.2f} /S")
+print(f"Tramo 4 > 100000 -> (30%) -> {impuesto4:.2f} /S")
 
-print("\nTotal de impuestos ->", impuesto_total, "/S")
-print("Tasa efectiva real ->", tasa_efectiva, "%")
+print("\nTotal de impuestos ->", f"{impuesto_total:.2f}", "/S")
+print("Tasa efectiva real ->", f"{tasa_efectiva:.2f}", "%")
