@@ -1,64 +1,61 @@
 # Autor: Pacheco Medina Geisel Reymar
-# Ejercicio 5: generar una matriz NxN en espiral
+# Ejercicio 5: generar una matriz NxN en forma de espiral
 
 # pedir N y validar que sea entero y N >= 3
 while True:
     entrada = input("Ingrese un numero N (mayor o igual a 3): ")
-    if entrada.isdigit():                  # validar que sea numero entero positivo
+    if entrada.isdigit(): # isdigit comprueba que sea un entero positivo
         N = int(entrada)
-        if N >= 3:                         # validar rango
+        if N >= 3:
             break
         else:
-            print("Error: N debe ser mayor o igual a 3.")
+            print("Error: ingrese un numero N mayor o igual a 3.")
     else:
         print("Error: debe ingresar un numero entero.")
 
-# crear matriz NxN llena de ceros
+# crear matriz NxN 
 matriz = [[0 for _ in range(N)] for _ in range(N)]
 
 # limites del recorrido en espiral
-top = 0                # limite superior
-bottom = N - 1         # limite inferior
-left = 0               # limite izquierdo
-right = N - 1          # limite derecho
+arriba = 0
+abajo = N - 1
+izquierda = 0
+derecha = N - 1
 
-num = 1                # numero inicial
-max_num = N * N        # ultimo numero a colocar
+numero = 1
+maximo = N * N
 
 # llenar matriz en espiral
-while num <= max_num:
+while numero <= maximo:
 
     # recorrer izquierda -> derecha
-    for j in range(left, right + 1):
-        if num <= max_num:
-            matriz[top][j] = num
-            num += 1
-    top += 1
+    for j in range(izquierda, derecha + 1):
+        matriz[arriba][j] = numero
+        numero += 1
+    arriba += 1
 
     # recorrer arriba -> abajo
-    for i in range(top, bottom + 1):
-        if num <= max_num:
-            matriz[i][right] = num
-            num += 1
-    right -= 1
+    for i in range(arriba, abajo + 1):
+        matriz[i][derecha] = numero
+        numero += 1
+    derecha -= 1
 
     # recorrer derecha -> izquierda
-    for j in range(right, left - 1, -1):
-        if num <= max_num:
-            matriz[bottom][j] = num
-            num += 1
-    bottom -= 1
+    for j in range(derecha, izquierda - 1, -1):
+        matriz[abajo][j] = numero
+        numero += 1
+    abajo -= 1
 
     # recorrer abajo -> arriba
-    for i in range(bottom, top - 1, -1):
-        if num <= max_num:
-            matriz[i][left] = num
-            num += 1
-    left += 1
+    for i in range(abajo, arriba - 1, -1):
+        matriz[i][izquierda] = numero
+        numero += 1
+    izquierda += 1
 
-# imprimir matriz con formato
+# imprimir matriz
 print("\nMatriz en espiral:\n")
 for fila in matriz:
     for valor in fila:
-        print(f"{valor}\t", end="")   # usamos tabulacion para alinear columnas
+        print(f"{valor}\t", end="")
     print()
+
